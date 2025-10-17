@@ -9,24 +9,21 @@ import java.io.PrintWriter;
 public class Main {
 
     public static final String[] COMANDO_1 = { "ls" };
-    public static final String[] COMANDO_2 = { "grep", "R" };
+    public static final String[] COMANDO_2 = { "grep", "r" };
 
     public static void main(String[] args) throws Exception {
-        Process p1 = lanzar(COMANDO_1);
-        String contenido = leer(p1);
-        Process p2 = lanzar(COMANDO_2);
-        escribir(p2, contenido);
-        if (esperar(p2) == 0 && esperar(p1) == 0) {
-            System.out.println(leer(p2));
-        } else {
-            System.out.println("Error en la ejecucion de algun proceso");
-        }
-
+        String contenido = lanzar(COMANDO_1, null);
+        String resultado = lanzar(COMANDO_2, contenido);
+        System.out.println(resultado);
     }
 
-    // Metodo para lanzar un proceso
-    public static Process lanzar(String[] comando) throws Exception {
-        return Runtime.getRuntime().exec(comando);
+    // Metodo para lanzar un proceso con una posible entrada 
+    public static String lanzar(String[] comando, String entrada) throws Exception {
+        Process a = Runtime.getRuntime().exec(comando);
+        if (entrada != null){
+            escribir(a, entrada);
+        }
+        return leer(a);
     }
 
     // Metodo para escribir en el OutStream del padre
