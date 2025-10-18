@@ -5,11 +5,13 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 public class Main {
 
-    public static final String[] COMANDO_1 = { "ls" };
-    public static final String[] COMANDO_2 = { "grep", "r" };
+    public static final String[] COMANDO_1 = { "ls", };
+    public static final String[] COMANDO_2 = { "grep", "a" };
+    public static final String MSG_ERROR = "Ha ocurrido un error en el proceso : ";
 
     public static void main(String[] args) throws Exception {
         String contenido = lanzar(COMANDO_1, null);
@@ -17,13 +19,15 @@ public class Main {
         System.out.println(resultado);
     }
 
-    // Metodo para lanzar un proceso con una posible entrada 
+    // Metodo para lanzar un proceso con una posible entrada
     public static String lanzar(String[] comando, String entrada) throws Exception {
         Process a = Runtime.getRuntime().exec(comando);
-        if (entrada != null){
+        if (entrada != null) {
             escribir(a, entrada);
         }
-        return leer(a);
+        String salida = leer(a);
+        String error = MSG_ERROR + Arrays.toString(comando);
+        return (a.waitFor() == 0) ? salida : error;
     }
 
     // Metodo para escribir en el OutStream del padre
@@ -52,9 +56,4 @@ public class Main {
         return sb.toString();
     }
 
-    // Metodo para esperar a que termine el proceso
-    public static int esperar(Process p) throws Exception {
-        int exitVal = p.waitFor();
-        return exitVal;
-    }
 }
