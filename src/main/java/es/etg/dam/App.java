@@ -19,7 +19,6 @@ public class App {
         System.out.println(resultado);
     }
 
-    // Metodo para lanzar un proceso con una posible entrada
     public static String lanzar(String[] comando, String entrada) throws Exception {
         Process a = Runtime.getRuntime().exec(comando);
         if (entrada != null) {
@@ -30,7 +29,6 @@ public class App {
         return (a.waitFor() == 0) ? salida : error;
     }
 
-    // Metodo para escribir en el OutStream del padre
     public static void escribir(Process p, String contenido) throws Exception {
         OutputStream out = p.getOutputStream();
         try (PrintWriter pw = new PrintWriter(new OutputStreamWriter(out))) {
@@ -42,7 +40,6 @@ public class App {
         }
     }
 
-    // Metodo para leer el input del padre
     public static String leer(Process p) throws Exception {
         StringBuilder sb = new StringBuilder();
         String linea;
