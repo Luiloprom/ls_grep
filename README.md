@@ -1,6 +1,6 @@
 # EJERCICIO PROCESOS – LS Y GREP  
 
-Repositorio: [https://github.com/Luiloprom/ejer_procesos.git](https://github.com/Luiloprom/ejer_procesos.git)
+Repositorio: [https://github.com/Luiloprom/ls_grep.git](https://github.com/Luiloprom/ls_grep.git)
 
 ## Índice  
 
