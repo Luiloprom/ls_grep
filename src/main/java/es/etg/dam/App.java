@@ -7,7 +7,7 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.util.Arrays;
 
-public class Main {
+public class App {
 
     public static final String[] COMANDO_1 = { "ls", };
     public static final String[] COMANDO_2 = { "grep", "a" };
